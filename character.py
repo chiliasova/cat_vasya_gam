@@ -12,9 +12,18 @@ class Character(Unit):
         self.max_health = self.calculate_max_health()
         self.damage = self.calculate_damage()
         self.defense = self.calculate_defense()
+        self.mana = self.calculate_max_mana()
     
     def calculate_max_health(self):
         return self.constitution * 10 + self.strength // 2
+    
+    def calculate_max_mana(self):
+        if self.character_class == 'warrior':
+            return self.intelligence + self.strength // 2
+        elif self.character_class == 'mage':
+            return self.intelligence * 3 + self.wisdom
+        elif self.character_class == 'hunter':
+            return int(self.dexterity * 1.5) + self.wisdom // 2
     
     def calculate_damage(self):
         if self.character_class == 'warrior':
